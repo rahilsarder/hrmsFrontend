@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "../Styles/login.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./Contexts/AuthContext";
 
 function Topbar() {
+	const { accessToken, setAccessToken } = useContext(AuthContext);
 	const [expanded, setExpanded] = useState(true);
 	const [show, setShow] = useState("");
+
+	const [search, setSearch] = useState("");
 
 	const navigate = useNavigate();
 
@@ -22,7 +26,8 @@ function Topbar() {
 
 	const url = "http://localhost:8000/api/";
 
-	const token = "16|xgPccKvPk4pvAvJ0KrIcnP7y5noENjEldTVf6qyl";
+	// const token = JSON.stringify(localStorage.getItem("accessToken"));
+	const token = accessToken;
 
 	const config = {
 		headers: {
@@ -31,13 +36,22 @@ function Topbar() {
 		},
 	};
 
-	const logout = () => {
-		axios.post(`${url}user/logout`, config)
+	const logout = async (e) => {
+		e.preventDefault();
+		const response = await axios.post(`${url}user/logout`, config);
+
+		localStorage.removeItem("accessToken");
+		setAccessToken("");
+		navigate("/login");
+	};
+
+	const handleSearch = (e) => {
+		e.preventDefault();
+		axios.get(`${url}employee/search/${search}`, config)
 			.then((res) => {
-				localStorage.removeItem("tokenId");
+				console.log(res);
 			})
-			.then((result) => navigate("/login"))
-			.then((data) => console.log("clicked"));
+			.catch((err) => alert(err));
 	};
 
 	return (
@@ -60,11 +74,13 @@ function Topbar() {
 							placeholder="Search for..."
 							aria-label="Search"
 							aria-describedby="basic-addon2"
+							onChange={(e) => setSearch(e.target.value)}
 						/>
 						<div className="input-group-append">
 							<button
 								className="btn btn-primary"
 								type="button"
+								onClick={handleSearch}
 							>
 								<i className="fas fa-search fa-sm"></i>
 							</button>

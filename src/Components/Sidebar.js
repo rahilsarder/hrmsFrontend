@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "./Assets/imgs/InsLogo.png";
 
 function Sidebar() {
 	return (
@@ -11,13 +12,14 @@ function Sidebar() {
 				{/* <!-- Sidebar - Brand --> */}
 				<a
 					className="sidebar-brand d-flex align-items-center justify-content-center"
-					href="index.html"
+					href="/dashboard"
 				>
-					<div className="sidebar-brand-icon rotate-n-15">
-						<i className="fas fa-laugh-wink"></i>
+					<div className="sidebar-brand-icon">
+						{/* <i className="fas fa-laugh-wink"></i> */}
+						<img src={logo} width="150px" />
 					</div>
 					<div className="sidebar-brand-text mx-3">
-						SB Admin <sup>2</sup>
+						
 					</div>
 				</a>
 
@@ -61,10 +63,16 @@ function Sidebar() {
 							<h6 className="collapse-header">
 								Custom Components:
 							</h6>
-							<a className="collapse-item" href="buttons.html">
+							<a
+								className="collapse-item"
+								href="buttons.html"
+							>
 								Buttons
 							</a>
-							<a className="collapse-item" href="cards.html">
+							<a
+								className="collapse-item"
+								href="cards.html"
+							>
 								Cards
 							</a>
 						</div>
@@ -129,60 +137,13 @@ function Sidebar() {
 				<div className="sidebar-heading">Addons</div>
 
 				{/* <!-- Nav Item - Pages Collapse Menu --> */}
-				<li className="nav-item">
-					<a
-						className="nav-link collapsed"
-						href="#"
-						data-toggle="collapse"
-						data-target="#collapsePages"
-						aria-expanded="true"
-						aria-controls="collapsePages"
-					>
-						<i className="fas fa-fw fa-folder"></i>
-						<span>Pages</span>
-					</a>
-					<div
-						id="collapsePages"
-						className="collapse"
-						aria-labelledby="headingPages"
-						data-parent="#accordionSidebar"
-					>
-						<div className="bg-white py-2 collapse-inner rounded">
-							<h6 className="collapse-header">
-								Login Screens:
-							</h6>
-							<a className="collapse-item" href="login.html">
-								Login
-							</a>
-							<a
-								className="collapse-item"
-								href="register.html"
-							>
-								Register
-							</a>
-							<a
-								className="collapse-item"
-								href="forgot-password.html"
-							>
-								Forgot Password
-							</a>
-							<div className="collapse-divider"></div>
-							<h6 className="collapse-header">Other Pages:</h6>
-							<a className="collapse-item" href="404.html">
-								404 Page
-							</a>
-							<a className="collapse-item" href="blank.html">
-								Blank Page
-							</a>
-						</div>
-					</div>
-				</li>
+				
 
 				{/* <!-- Nav Item - Charts --> */}
 				<li className="nav-item">
-					<a className="nav-link" href="charts.html">
+					<a className="nav-link" href="/dashboard/users">
 						<i className="fas fa-fw fa-chart-area"></i>
-						<span>Charts</span>
+						<span>Users</span>
 					</a>
 				</li>
 
@@ -194,16 +155,16 @@ function Sidebar() {
 					</a>
 				</li>
 
-				{/* <!-- Divider --> */}
+				{/* <!-- Divider -->
 				<hr className="sidebar-divider d-none d-md-block" />
 
-				{/* <!-- Sidebar Toggler (Sidebar) --> */}
+				<!-- Sidebar Toggler (Sidebar) -->
 				<div className="text-center d-none d-md-inline">
 					<button
 						className="rounded-circle border-0"
 						id="sidebarToggle"
 					></button>
-				</div>
+				</div> */}
 			</ul>
 		</div>
 	);
